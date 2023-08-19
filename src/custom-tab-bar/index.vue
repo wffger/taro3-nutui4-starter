@@ -1,98 +1,54 @@
 <template>
-  <cover-view class="tab-bar">
-    <cover-view class="tab-bar-border"></cover-view>
-    <cover-view v-for="(item, index) in list" :key="index" class="tab-bar-item" @tap="switchTab(index, item.pagePath)">
-      <cover-image class="item-image" :src="selected === index ? item.selectedIconPath : item.iconPath" />
-      <cover-view class="item-view" :style="{ color: selected === index ? selectedColor : color }">{{ item.text }}</cover-view>
-    </cover-view>
-  </cover-view>
+  <div>
+    <nut-tabbar bottom safe-area-inset-bottom placeholder @tab-switch="tabSwitch">
+      <nut-tabbar-item v-for="(item, index) in tabs" :tab-title="item.title" :icon="item.icon"> </nut-tabbar-item>
+    </nut-tabbar>
+  </div>
 </template>
-  
-<script setup>
+<script lang="ts">
 import Taro from '@tarojs/taro'
-import { storeToRefs ,computed } from 'vue'
-import { useTab } from '@/stores'
-const tab = useTab()
-const selected = computed(() => tab.selected)
+import { ref, h } from 'vue';
+import { Follow, Category, Link, My } from '@nutui/icons-vue-taro';
+export default {
+  options: {
+    addGlobalClass: true,
+  },
+  components: { Follow, Category, Link, My },
+  setup() {
+    const tabs = ref([
+      {
+        title: '推荐',
+        icon: h(Follow),
+        name: 'intro',
+        path: '/pages/intro/index'
+      },
+      {
+        title: '广场',
+        icon: h(Category),
+        name: 'plaza',
+        path: '/pages/plaza/index'
+      },
+      {
+        title: '连接',
+        icon: h(Link),
+        name: 'link',
+        path: '/pages/link/index'
+      },
+      {
+        title: '我的',
+        icon: h(My),
+        name: 'my',
+        path: '/pages/my/index'
+      }
+    ]);
+    function tabSwitch(item, index) {
+      Taro.switchTab({ url: tabs.value[index].path })
+    }
 
-const color = '#000000'
-const selectedColor = '#DC143C'
-const list = [
-  {
-    pagePath: '/pages/index/index',
-    selectedIconPath: '../images/tabbar_home_on.png',
-    iconPath: '../images/tabbar_home.png',
-    text: '首页'
-  },
-  {
-    pagePath: '/pages/cate/index',
-    selectedIconPath: '../images/tabbar_cate_on.png',
-    iconPath: '../images/tabbar_cate.png',
-    text: '分类'
-  },
-  {
-    pagePath: '/pages/cart/index',
-    selectedIconPath: '../images/tabbar_cart_on.png',
-    iconPath: '../images/tabbar_cart.png',
-    text: '购物车'
-  },
-  {
-    pagePath: '/pages/my/index',
-    selectedIconPath: '../images/tabbar_my_on.png',
-    iconPath: '../images/tabbar_my.png',
-    text: '个人中心'
+    return {
+      tabSwitch,
+      tabs,
+    };
   }
-]
-
-function switchTab(index, url) {
-  setSelected(index)
-  Taro.switchTab({ url })
-}
-
-function setSelected(index) {
-  // store.dispatch('setSelected', index)
-  tab.setSelected(index)
-
-}
+};
 </script>
-  
-<style lang="scss">
-.tab-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: white;
-  display: flex;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-.tab-bar-border {
-  background-color: rgba(0, 0, 0, 0.33);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 1px;
-  transform: scaleY(0.5);
-}
-
-.tab-bar-item {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.item-image {
-  width: 54px;
-  height: 54px;
-}
-
-.item-view {
-  font-size: 20px;
-}
-</style>

@@ -1,8 +1,8 @@
 export default defineAppConfig({
   pages: [
-    'pages/index/index',
-    'pages/cate/index',
-    'pages/cart/index',
+    'pages/intro/index',
+    'pages/plaza/index',
+    'pages/link/index',
     'pages/my/index'
   ],
   window: {
@@ -18,28 +18,20 @@ export default defineAppConfig({
     backgroundColor: '#ffffff',
     list: [
       {
-        pagePath: 'pages/index/index',
-        selectedIconPath: 'images/tabbar_home_on.png',
-        iconPath: 'images/tabbar_home.png',
-        text: '首页'
+        pagePath: 'pages/intro/index',
+        text: '推荐'
       },
       {
-        pagePath: 'pages/cate/index',
-        selectedIconPath: 'images/tabbar_cate_on.png',
-        iconPath: 'images/tabbar_cate.png',
-        text: '分类'
+        pagePath: 'pages/plaza/index',
+        text: '广场'
       },
       {
-        pagePath: 'pages/cart/index',
-        selectedIconPath: 'images/tabbar_cart_on.png',
-        iconPath: 'images/tabbar_cart.png',
-        text: '购物车'
+        pagePath: 'pages/link/index',
+        text: '消息'
       },
       {
         pagePath: 'pages/my/index',
-        selectedIconPath: 'images/tabbar_my_on.png',
-        iconPath: 'images/tabbar_my.png',
-        text: '个人中心'
+        text: '我的'
       }
     ]
   }

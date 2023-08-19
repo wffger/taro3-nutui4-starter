@@ -1,6 +1,6 @@
 <template>
-    <view class="index">
-      <text>我是个人中心！</text>
+    <view>
+      <text>这是广场页！</text>
     </view>
   </template>
   
@@ -9,6 +9,6 @@
   options: {
     addGlobalClass: true,
   },
-    name: 'My'
+    name: 'plaza'
   }
   </script>
