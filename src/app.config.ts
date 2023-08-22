@@ -1,9 +1,10 @@
 export default defineAppConfig({
   pages: [
-    'pages/intro/index',
-    'pages/plaza/index',
-    'pages/link/index',
-    'pages/my/index'
+    'pages/0intro/index',
+    'pages/1plaza/index',
+    'pages/2link/index',
+    'pages/3my/index',
+    'pages/4other/index',
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -12,25 +13,25 @@ export default defineAppConfig({
     navigationBarTextStyle: 'black'
   },
   tabBar: {
-    custom: true,
+    // custom: true,
     color: '#000000',
     selectedColor: '#DC143C',
     backgroundColor: '#ffffff',
     list: [
       {
-        pagePath: 'pages/intro/index',
+        pagePath: 'pages/0intro/index',
         text: '推荐'
       },
       {
-        pagePath: 'pages/plaza/index',
+        pagePath: 'pages/1plaza/index',
         text: '广场'
       },
       {
-        pagePath: 'pages/link/index',
-        text: '消息'
+        pagePath: 'pages/2link/index',
+        text: '连接'
       },
       {
-        pagePath: 'pages/my/index',
+        pagePath: 'pages/3my/index',
         text: '我的'
       }
     ]
