@@ -1,4 +1,4 @@
 export default definePageConfig({
-    navigationBarTitleText: '购物车',
+    navigationBarTitleText: '推荐',
     "usingComponents": {}
   })

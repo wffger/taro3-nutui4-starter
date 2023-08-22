@@ -14,12 +14,6 @@ const useTab = defineStore({
     }
   },
   actions: {
-    increment() {
-      this._selected++
-    },
-    add(i) {
-      this._selected += i
-    },
     setSelected(i) {
       this._selected = i
     }
